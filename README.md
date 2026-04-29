@@ -172,7 +172,42 @@ Claude Code is where you'll do all the work. You talk to it in plain language.
 2. **Sign in with the YWAM Château team account** the admin shared with you. If you're already signed into a personal Claude account, you may need to switch accounts or sign in via Settings → Account → Add account.
 3. Once signed into the team account, **open the cloned project folder as a new project** (e.g., `~/Documents/GitHub/ywam-chateau-site`)
 
-### Choose your model
+---
+
+## Step 6 · Start your first session (~2 min)
+
+In Claude Code at the project folder, **type this and press Enter**:
+
+```
+/orient
+```
+
+That's it. The `/orient` command is a slash command that lives inside the project repo — it tells Claude to read `CLAUDE.md` and `WORKFLOW.md`, check recent git history, summarize the project state for you, and ask what you'd like to work on.
+
+> **If `/orient` doesn't autocomplete or work**, the slash commands haven't loaded yet. Either restart Claude Code, or paste this fallback message:
+>
+> ```
+> Read CLAUDE.md and WORKFLOW.md, then run `git log --oneline -20`
+> and `git status -b`. Tell me what you understand about the project
+> and what state we're in.
+> ```
+>
+> The slash command does the same thing — just shorter to type. **Use `/orient` at the start of every new session** so Claude is fully caught up before you give it a task.
+
+### What happens next
+
+After Claude orients itself, it'll ask **"What would you like to work on?"**
+
+Tell it your task in plain language. Examples:
+
+- *"I want to build the DTS page from scratch."*
+- *"Change the homepage hero copy from X to Y."*
+- *"Apply this Claude Design export — here's the file."*
+- *"Add this photo to the community section."*
+
+Claude will then **recommend a model** for that task (see below) and start working.
+
+### 🎯 Choose your model
 
 In the top of the conversation window there's a model selector. Default for daily work:
 
@@ -188,33 +223,20 @@ Sonnet is fast, capable, and stretches the team's quota furthest. For most of wh
 
 You can switch mid-conversation if the complexity changes. Just click the model selector at the top.
 
-**Why not Opus all the time?** Opus burns through quota ~3–5× faster than Sonnet and turns are noticeably slower. For routine work guided by CLAUDE.md (which the project already has), Sonnet is plenty. Save Opus for when you actually need its extra reasoning.
+**Why not Opus all the time?** Opus burns through quota ~3–5× faster than Sonnet and turns are noticeably slower. For routine work guided by `CLAUDE.md` (which the project already has), Sonnet is plenty. Save Opus for when you actually need its extra reasoning.
 
----
+Claude will recommend the right one based on your task. You can override if you want.
 
-## Step 6 · Tell Claude Code about the project (~2 min)
+### Bookmark these URLs
 
-In Claude Code at the project folder, paste this exact message as your first chat:
+You'll be checking these throughout the day after every `/ship` and `/promote`:
 
-```
-Read CLAUDE.md and WORKFLOW.md, then run `git log --oneline -20`
-and `git status -b`. Tell me what you understand about the project
-and what state we're in.
-```
+- **Production:** https://ywam-chateau-site.pages.dev/ — the live site
+- **Staging:** https://staging.ywam-chateau-site.pages.dev/ — where new changes go for review
 
-Claude Code will read the project's documentation files (which are in the repo) and orient itself. You'll see a summary of what the project is, what's been done recently, and what state it's in.
+### You're done with setup
 
-After the orientation summary, Claude will ask **"What would you like to work on?"** Tell it your task in plain language (e.g. *"I want to build the DTS page"* or *"Change the homepage hero copy"*).
-
-**Claude will also recommend a model** based on your task — Sonnet for routine work, Opus for complex tasks like applying Claude Design exports or building new pages. Switch via the model selector at the top if Claude recommends a different one. Then Claude proceeds.
-
-After Claude is oriented, **bookmark these URLs**:
-- Production: **https://ywam-chateau-site.pages.dev/** — the live site
-- Staging: **https://staging.ywam-chateau-site.pages.dev/** — where new changes go for review
-
-You'll be checking these throughout the day after every `/ship` and `/promote`.
-
-**You're done with setup.** From here, normal work is just talking to Claude Code in plain language.
+From here, normal work is just talking to Claude Code in plain language. **Always start a new session with `/orient`** so context is loaded the same way every time. Sonnet sessions tend to be shorter than Opus, so you'll likely run `/orient` several times a day — that's fine, it's fast.
 
 ---
 
