@@ -8,6 +8,25 @@ You **don't need to be a developer** to follow this. Every step is a click, a pa
 
 ---
 
+## 🔗 Where the website lives
+
+Bookmark these — you'll come back to them every day:
+
+| URL | What it is |
+|---|---|
+| **https://ywam-chateau-site.pages.dev/** | **Production** — the live website. What the public sees. (Eventually `https://ywamchateau.com` once DNS is pointed.) |
+| **https://staging.ywam-chateau-site.pages.dev/** | **Staging / test URL.** Where new changes land for review before they go to production. (Eventually `https://test.ywamchateau.com`.) |
+
+When you ship a change with `/ship` (Lane 2 — test first), it appears on staging in ~60 seconds. When you `/promote`, it moves to production in another ~60 seconds.
+
+Other useful URLs:
+- **GitHub repo (private):** https://github.com/ywamchateau/ywam-chateau-site
+- **Design system (public):** https://github.com/ywamchateau/design-system
+- **This onboarding doc (public):** https://github.com/ywamchateau/team-onboarding
+- **Cloudflare dashboard:** https://dash.cloudflare.com (ask the admin if you need access to view deploy logs)
+
+---
+
 ## What you'll install
 
 | Tool | Purpose | Cost |
@@ -166,6 +185,12 @@ and what state we're in.
 
 Claude Code will read the project's documentation files (which are in the repo) and orient itself. You'll see a summary of what the project is, what's been done recently, and what state it's in.
 
+After Claude is oriented, **bookmark these URLs**:
+- Production: **https://ywam-chateau-site.pages.dev/** — the live site
+- Staging: **https://staging.ywam-chateau-site.pages.dev/** — where new changes go for review
+
+You'll be checking these throughout the day after every `/ship` and `/promote`.
+
 **You're done with setup.** From here, normal work is just talking to Claude Code in plain language.
 
 ---
@@ -185,7 +210,8 @@ What Claude Code does in response:
 |---|---|
 | Tell Claude in plain language what to change | Edits the right files, runs the build, shows you the diff |
 | Confirm | Commits + pushes via gh CLI (no extra step from you) |
-| Wait ~60 seconds | Cloudflare auto-deploys, change is live |
+| Wait ~60 seconds | Cloudflare auto-deploys to **staging.ywam-chateau-site.pages.dev** (Lane 2) or **ywam-chateau-site.pages.dev** (Lane 1, direct to prod) |
+| Refresh the URL | See your change live |
 
 **You never need to:**
 - Touch the terminal directly (after setup)
