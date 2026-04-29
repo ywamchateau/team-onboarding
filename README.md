@@ -172,6 +172,24 @@ Claude Code is where you'll do all the work. You talk to it in plain language.
 2. **Sign in with the YWAM Château team account** the admin shared with you. If you're already signed into a personal Claude account, you may need to switch accounts or sign in via Settings → Account → Add account.
 3. Once signed into the team account, **open the cloned project folder as a new project** (e.g., `~/Documents/GitHub/ywam-chateau-site`)
 
+### Choose your model
+
+In the top of the conversation window there's a model selector. Default for daily work:
+
+🎯 **Claude Sonnet 4.7 — medium effort**
+
+Sonnet is fast, capable, and stretches the team's quota furthest. For most of what you'll do — copy edits, photo additions, page tweaks, /ship and /promote flows — Sonnet handles it perfectly while keeping turns snappy.
+
+**Switch to Claude Opus 4.7 — high effort** when the task is genuinely complex:
+- Applying a Claude Design export with the merge gate (especially with new photos or structural changes)
+- Multi-file refactors
+- Designing a new page from scratch
+- Debugging an unexpected build error
+
+You can switch mid-conversation if the complexity changes. Just click the model selector at the top.
+
+**Why not Opus all the time?** Opus burns through quota ~3–5× faster than Sonnet and turns are noticeably slower. For routine work guided by CLAUDE.md (which the project already has), Sonnet is plenty. Save Opus for when you actually need its extra reasoning.
+
 ---
 
 ## Step 6 · Tell Claude Code about the project (~2 min)
