@@ -261,12 +261,15 @@ Each project's `WORKFLOW.md` explains when to use Claude Design vs Claude Code. 
 
 ## The repos
 
-| Repo | What it contains |
-|---|---|
-| **`ywamchateau/team-onboarding`** | This setup guide (you're reading it) |
-| **`ywamchateau/ywam-chateau-site`** | The marketing website (the active project right now) |
+| Repo | Visibility | What it contains |
+|---|---|---|
+| **`ywamchateau/team-onboarding`** | Public | This setup guide (you're reading it) |
+| **`ywamchateau/design-system`** | Public | Canonical design system: tokens, fonts, logos, brand voice. Project repos snapshot from here. |
+| **`ywamchateau/ywam-chateau-site`** | Private | The marketing website (the active project right now) |
 
-When you're added as a collaborator on a project repo, the project's own `CLAUDE.md` and `WORKFLOW.md` files will tell you everything specific to that project.
+When you're added as a collaborator on a project repo, that project's own `CLAUDE.md` and `WORKFLOW.md` files will tell you everything specific to it.
+
+**You don't need to manually clone the design system** — but if a Claude Code session ever needs to reference it (e.g., "what's the latest token for `--gold-deep`?"), you can ask Claude to fetch it via `gh repo clone ywamchateau/design-system /tmp/design-system`. Claude can also use `gh api` to grab a single file without cloning the full 33 MB.
 
 ---
 
