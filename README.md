@@ -80,20 +80,44 @@ Paste this whole command into Terminal, press Enter:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-What happens:
-- It'll ask for your **Mac password**. Type it (you won't see characters — that's normal). Press Enter.
-- It downloads and installs. Takes ~3 minutes.
-- When it finishes, scroll up to find a section labeled "**==> Next steps:**". Below that line you'll see two `echo` commands and one `eval` command (3 lines total). They look like:
+**What happens:**
+1. It asks for your **Mac password**. Type it (you won't see any characters — that's normal). Press Enter.
+2. The install runs for ~3 minutes. You'll see a lot of scrolling output.
+3. When it finishes, your normal Terminal prompt returns. It usually looks like `yourname@MacBook ~ %` (the `%` symbol is the key signal).
+
+**Stuck — how do I know it's actually done?** Look for the `%` (or `$`) at the end of the last line. If you see that and the cursor is blinking next to it, you're back at the prompt and ready for the next step.
+
+**If you don't see a prompt and the cursor isn't blinking next to a `%`,** press **Control+C** (hold Control, tap C). That cancels whatever's running and returns you to a fresh prompt. Then continue.
+
+> ℹ️ Homebrew prints a "**==> Next steps:**" section telling you to manually paste 2–3 lines. **You can ignore it.** Step 2.2 below does the same thing in one paste — and it tells you when it worked.
+
+### 2.2 — Wire Homebrew into your shell + verify it worked (1 paste)
+
+Once you're back at the prompt (the `%` symbol), **paste this whole one-liner** into Terminal and press Enter:
 
 ```
-echo >> /Users/<your-name>/.zprofile
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/<your-name>/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)" && (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile && echo "" && echo "✅ Homebrew is ready. $(brew --version | head -n 1)"
 ```
 
-**Copy those exact 3 commands and paste them into the Terminal.** They wire Homebrew into your shell so the next step works.
+This single line:
+- Activates Homebrew in your current Terminal session
+- Wires it permanently into future Terminal windows (via `~/.zprofile`)
+- Prints a green check + the Homebrew version so you can **see** it worked
 
-### 2.2 — Install gh CLI
+**You should see exactly this:**
+
+```
+✅ Homebrew is ready. Homebrew 4.x.x
+```
+
+If you see that ✅ line, you're done. Skip to step 2.3.
+
+**If you see something else (errors, `command not found`, etc.):**
+- Most common cause: the Homebrew install in step 2.1 hadn't fully finished when you ran this. Wait 30 seconds, scroll up to confirm you saw `Installation successful!` earlier in the output, then try again.
+- If you're on a pre-2020 Intel Mac (rare): swap `/opt/homebrew` for `/usr/local` in the command above.
+- Still stuck? Screenshot your Terminal and send it to the admin.
+
+### 2.3 — Install gh CLI
 
 Still in Terminal:
 
@@ -101,9 +125,9 @@ Still in Terminal:
 brew install gh
 ```
 
-Takes ~30 seconds. No password needed.
+Takes ~30 seconds. **You'll know it worked** when you see your `%` prompt return and the last line of output mentions `gh` (something like `==> Summary` or a sparkle icon followed by the install path). If `brew` says `command not found`, step 2.2 didn't fully take — close Terminal, reopen it, and try `brew install gh` again.
 
-### 2.3 — Authenticate with GitHub
+### 2.4 — Authenticate with GitHub
 
 ```
 gh auth login
@@ -111,16 +135,23 @@ gh auth login
 
 Walk through the prompts — exact answers:
 
-1. **What account?** → `GitHub.com`
-2. **Preferred protocol for Git?** → `HTTPS`
-3. **Authenticate Git with your GitHub credentials?** → `Yes`
-4. **How would you like to authenticate?** → `Login with a web browser`
-5. It shows a one-time code (like `ABCD-1234`) — **copy it**
-6. Press Enter — your browser opens
-7. Paste the code, click **Authorize**, close the browser tab
-8. Back in Terminal you should see `✓ Authentication complete` and `Logged in as <yourusername>`
+1. **What account do you want to log into?** → use ↓ arrow if needed to highlight `GitHub.com`, press Enter
+2. **What is your preferred protocol for Git operations on this host?** → `HTTPS`, press Enter
+3. **Authenticate Git with your GitHub credentials?** → `Yes`, press Enter
+4. **How would you like to authenticate GitHub CLI?** → `Login with a web browser`, press Enter
+5. It shows a one-time code (something like `ABCD-1234`) — **copy that code to your clipboard** (highlight it, ⌘+C)
+6. Press Enter — your default browser opens to a GitHub page
+7. Paste the code (⌘+V), click **Authorize**, close the browser tab
+8. Switch back to Terminal — you should see this confirmation:
 
-Done with Terminal. **You won't need to come back to it.**
+```
+✓ Authentication complete.
+✓ Logged in as <yourgithubusername>
+```
+
+**If you see those two `✓` lines — auth is done.** Move to Step 3. (Terminal will still come up briefly in Steps 3 and 4 to clone the repo and install Node, but those are one-line pastes — no more multi-step prompts.)
+
+**If you don't see those `✓` lines after ~30 seconds:** the browser auth probably timed out. Close Terminal, reopen it, and run `gh auth login` again.
 
 ---
 
