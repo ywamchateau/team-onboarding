@@ -20,8 +20,9 @@ Bookmark these — you'll come back to them every day:
 When you ship a change with `/ship` (Lane 2 — test first), it appears on staging in ~60 seconds. When you `/promote`, it moves to production in another ~60 seconds.
 
 Other useful URLs:
-- **GitHub repo (private):** https://github.com/ywamchateau/ywam-chateau-site
-- **Design system (public):** https://github.com/ywamchateau/design-system
+- **Website GitHub repo (private):** https://github.com/ywamchateau/ywam-chateau-site
+- **Design system repo (public):** https://github.com/ywamchateau/design-system
+- **🎨 Design system rendered (live page):** https://ywamchateau.github.io/design-system/ — colors, type, components, logos visible at a glance
 - **This onboarding doc (public):** https://github.com/ywamchateau/team-onboarding
 - **Cloudflare dashboard:** https://dash.cloudflare.com (ask the admin if you need access to view deploy logs)
 
