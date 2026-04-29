@@ -319,12 +319,26 @@ If you'll be debugging deploy issues, ask the admin to add you to the YWAM Chât
 
 ### Claude Design
 
-For visual design work (new pages, photo placement), the team uses **Claude Design** at https://claude.ai/design. It's a separate product from Claude Code (not integrated). The workflow:
+For visual design work (new pages, photo placement), the team uses **Claude Design** at https://claude.ai/design. It's a separate product from Claude Code (not integrated) — the two don't share files automatically, so the round trip is manual.
 
-1. Iterate visually in Claude Design
-2. Export the result
-3. Hand the export to Claude Code, say *"apply this to staging"*
-4. Claude Code runs a "merge gate" to safely apply changes
+**The full round trip:**
+
+1. **Export the current page from Claude Code as a single HTML file.** In your Claude Code session, say:
+   > *"Export the current homepage as a single self-contained HTML file I can upload to Claude Design. Inline the CSS, keep the photos as relative paths, and save it to my Downloads folder as `homepage.bundled.html`."*
+
+   Claude will bundle the Astro page (`src/pages/<page>.astro` + `src/styles/*.css` + the layout + components) into one standalone HTML file and drop it in `~/Downloads/`. Swap `homepage` for whichever page you're iterating on (`dts`, `dbs`, `spl`, etc.).
+
+2. **Upload that file to Claude Design** at https://claude.ai/design as the starting point. Claude Design now sees the real, current state of the live page — not a blank canvas.
+
+3. **Iterate visually in Claude Design.** Move things, swap photos, try copy variants — whatever the visual decision is.
+
+4. **Export the result from Claude Design** (download the updated HTML).
+
+5. **Hand the export back to Claude Code**, say *"apply this to staging"* and attach (or paste the path to) the exported file.
+
+6. **Claude Code runs the "merge gate"** — it diffs the export against the current repo, surfaces what changed (text, photos, structure, tokens), and applies only the visual decisions while preserving the tokenized design system. You review the diff, then `/ship` to staging.
+
+> ⚠️ **Always export from Claude Code first** (step 1) before opening Claude Design. If you start from scratch in Claude Design, the merge gate has nothing to diff against and you'll lose the tokenized styles. Round-tripping the current page in keeps the design system intact.
 
 Each project's `WORKFLOW.md` explains when to use Claude Design vs Claude Code. Default to Claude Code unless you're making a real visual decision.
 
