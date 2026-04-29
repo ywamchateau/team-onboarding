@@ -333,7 +333,7 @@ This setup runs on YOUR Mac. The setup itself doesn't sync to other machines —
 **What IS shared automatically (via the project repo):**
 
 - All workflow rules and decisions (in `CLAUDE.md`, `WORKFLOW.md` of each project)
-- Slash commands (`/yc-ship`, `/yc-promote`) — they live inside the repo
+- Slash commands (`/yc-orient`, `/yc-ship`, `/yc-promote`, `/yc-export-for-design`) — they live inside the repo
 - Permission allowlist for routine commands
 
 **What stays per-machine:**
@@ -368,10 +368,20 @@ For visual design work (new pages, photo placement), the team uses **Claude Desi
 
 **The full round trip:**
 
-1. **Export the current page from Claude Code as a single HTML file.** In your Claude Code session, say:
-   > *"Export the current homepage as a single self-contained HTML file I can upload to Claude Design. Inline the CSS, keep the photos as relative paths, and save it to my Downloads folder as `homepage.bundled.html`."*
+1. **Export the current page from Claude Code using the `/yc-export-for-design` slash command.** In your Claude Code session, type:
+   ```
+   /yc-export-for-design
+   ```
 
-   Claude will bundle the Astro page (`src/pages/<page>.astro` + `src/styles/*.css` + the layout + components) into one standalone HTML file and drop it in `~/Downloads/`. Swap `homepage` for whichever page you're iterating on (`dts`, `dbs`, `spl`, etc.).
+   That bundles the homepage to `~/Downloads/homepage.bundled.html`. To bundle a different page, pass it as an argument:
+   ```
+   /yc-export-for-design dts
+   ```
+   Valid pages: `homepage` (default), `dts`, `dbs`, `spl`, `apply`, `about`.
+
+   The skill builds the site, inlines the CSS, and rewrites every photo and font path to point at the live staging deployment so Claude Design renders the page correctly when uploaded. Output is ~120 KB.
+
+   > ⚠️ **Don't try to do this by hand or with a freeform prompt.** A naive "save the page as HTML" produces a broken file — Astro's photo and font paths are root-relative and 404 outside a webserver. The slash command is the only correct way; it exists because the manual approach has bitten the team before.
 
 2. **Upload that file to Claude Design** at https://claude.ai/design as the starting point. Claude Design now sees the real, current state of the live page — not a blank canvas.
 
