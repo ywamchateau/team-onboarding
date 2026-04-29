@@ -204,6 +204,10 @@ and what state we're in.
 
 Claude Code will read the project's documentation files (which are in the repo) and orient itself. You'll see a summary of what the project is, what's been done recently, and what state it's in.
 
+After the orientation summary, Claude will ask **"What would you like to work on?"** Tell it your task in plain language (e.g. *"I want to build the DTS page"* or *"Change the homepage hero copy"*).
+
+**Claude will also recommend a model** based on your task — Sonnet for routine work, Opus for complex tasks like applying Claude Design exports or building new pages. Switch via the model selector at the top if Claude recommends a different one. Then Claude proceeds.
+
 After Claude is oriented, **bookmark these URLs**:
 - Production: **https://ywam-chateau-site.pages.dev/** — the live site
 - Staging: **https://staging.ywam-chateau-site.pages.dev/** — where new changes go for review
