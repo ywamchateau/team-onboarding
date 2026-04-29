@@ -149,9 +149,21 @@ Walk through the prompts — exact answers:
 ✓ Logged in as <yourgithubusername>
 ```
 
-**If you see those two `✓` lines — auth is done.** Move to Step 3. (Terminal will still come up briefly in Steps 3 and 4 to clone the repo and install Node, but those are one-line pastes — no more multi-step prompts.)
+**If you see those two `✓` lines — auth is done.** Move to Step 2.5 to verify your name. (Terminal will still come up briefly in Steps 3 and 4 to clone the repo and install Node, but those are one-line pastes — no more multi-step prompts.)
 
 **If you don't see those `✓` lines after ~30 seconds:** the browser auth probably timed out. Close Terminal, reopen it, and run `gh auth login` again.
+
+### 2.5 — Verify your git name (1 paste)
+
+Every commit you make will show your name in the Cloudflare deploy list and the project's git history. We want your **real first name** there, not a GitHub handle. Paste this one-liner to check + set it correctly:
+
+```
+NAME=$(git config user.name); echo "Current: $NAME"; FIRST=$(echo "$NAME" | awk '{print $1}'); if [ -z "$NAME" ] || echo "$NAME" | grep -qE "^[a-z0-9_-]+$"; then echo ""; echo "⚠️  Looks like a GitHub handle, not a real name."; echo "Run this to fix it (replace with your real name):"; echo '   git config --global user.name "Your Name"'; else echo "✅ First name extracted: $FIRST — looks good."; fi
+```
+
+You'll see one of:
+- **`✅ First name extracted: Sarah — looks good.`** → you're set, move to Step 3.
+- **`⚠️  Looks like a GitHub handle, not a real name.`** → run `git config --global user.name "Your Name"` (with your actual real name in quotes) and paste the verifier again.
 
 ---
 
