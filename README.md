@@ -13,12 +13,14 @@ You **don't need to be a developer** to follow this. Every step is a click, a pa
 | Tool | Purpose | Cost |
 |---|---|---|
 | **GitHub account** | Where the code lives | Free |
-| **Homebrew** | Mac package manager (used to install gh CLI below) | Free |
+| **Homebrew** | Mac package manager (used to install gh + Node) | Free |
 | **gh CLI** | GitHub command-line tool — handles auth + lets Claude Code push for you | Free |
 | **Node.js** | Runs websites locally on your Mac for previews | Free |
 | **Claude Code** | Where the actual editing happens — talk to it in plain language | Team plan |
 
-That's it. **5 things, all free or already-paid.** No GitHub Desktop, no other CLI tools, no IDE. Just enough to let Claude Code do its job.
+Most YWAM team members already have Claude Code installed for other work — in that case, just sign into the team account and skip the download.
+
+Total time: **~15 min**. No GitHub Desktop, no IDE, no other tools.
 
 ---
 
@@ -116,30 +118,39 @@ That downloads the project to `~/Documents/GitHub/<project-name>`. Done.
 
 ---
 
-## Step 4 · Install Node.js (~3 min)
+## Step 4 · Install Node.js (~30 sec)
 
 Node.js is what runs the websites locally on your Mac for previews. You'll never use it directly — Claude Code runs it for you.
 
-1. Go to **https://nodejs.org**
-2. Click the big green **LTS** button (the recommended version)
-3. Open the downloaded `.pkg` file
-4. Walk through the installer — just click **Continue**, agree, install. No choices to make.
-5. Enter your Mac password when prompted
-6. Close the installer when it says "Installation complete"
+Since Homebrew is already installed from Step 2, this is one command. In Terminal:
+
+```
+brew install node
+```
+
+Takes ~30 seconds. No password needed.
 
 You don't need to test anything. Claude Code will tell you if something's wrong.
 
+> If you'd rather use the GUI installer, you can download from https://nodejs.org instead (click the green LTS button, open the .pkg, walk through). But brew is faster.
+
 ---
 
-## Step 5 · Install Claude Code (~5 min)
+## Step 5 · Open Claude Code with the team account (~2 min)
 
 Claude Code is where you'll do all the work. You talk to it in plain language.
 
-1. Download Claude Code from **https://claude.ai/download** (or check Anthropic's docs for the current download link)
+**If you don't have Claude Code installed yet:**
+1. Download from **https://claude.ai/download** (or check Anthropic's docs for the current download link)
 2. Drag to Applications
-3. Open Claude Code
-4. Sign in with the **team account** the admin shared with you
-5. Inside Claude Code, **open the cloned project folder** as a new project (e.g., `~/Documents/GitHub/ywam-chateau-site`)
+
+**If you already have Claude Code installed** (most YWAM team members do — used for other work), skip the download step.
+
+**Either way, then:**
+
+1. Open Claude Code
+2. **Sign in with the YWAM Château team account** the admin shared with you. If you're already signed into a personal Claude account, you may need to switch accounts or sign in via Settings → Account → Add account.
+3. Once signed into the team account, **open the cloned project folder as a new project** (e.g., `~/Documents/GitHub/ywam-chateau-site`)
 
 ---
 
