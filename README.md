@@ -106,15 +106,15 @@ Done with Terminal. **You won't need to come back to it.**
 
 ## Step 3 · Clone the project (~30 sec)
 
-Still in Terminal (last time, promise), run this — replacing `<project-name>` with the actual project repo (e.g. `ywam-chateau-site`):
+Still in Terminal (last time, promise). Paste this exactly — no edits needed:
 
 ```
-mkdir -p ~/Documents/GitHub
-cd ~/Documents/GitHub
-gh repo clone ywamchateau/<project-name>
+mkdir -p ~/Documents/GitHub && cd ~/Documents/GitHub && gh repo clone ywamchateau/ywam-chateau-site
 ```
 
-That downloads the project to `~/Documents/GitHub/<project-name>`. Done.
+That downloads the website project to `~/Documents/GitHub/ywam-chateau-site`. Done.
+
+> If you've been added to additional YWAM Château repos (e.g., a new microsite later), clone those the same way: `gh repo clone ywamchateau/<repo-name>`. Each project lives in its own folder under `~/Documents/GitHub/`.
 
 ---
 
