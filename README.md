@@ -17,7 +17,7 @@ Bookmark these — you'll come back to them every day:
 | **https://ywam-chateau-site.pages.dev/** | **Production** — the live website. What the public sees. (Eventually `https://ywamchateau.com` once DNS is pointed.) |
 | **https://staging.ywam-chateau-site.pages.dev/** | **Staging / test URL.** Where new changes land for review before they go to production. (Eventually `https://test.ywamchateau.com`.) |
 
-When you ship a change with `/ship` (Lane 2 — test first), it appears on staging in ~60 seconds. When you `/promote`, it moves to production in another ~60 seconds.
+When you ship a change with `/yc-ship` (Lane 2 — test first), it appears on staging in ~60 seconds. When you `/yc-promote`, it moves to production in another ~60 seconds.
 
 Other useful URLs:
 - **Website GitHub repo (private):** https://github.com/ywamchateau/ywam-chateau-site
@@ -179,12 +179,12 @@ Claude Code is where you'll do all the work. You talk to it in plain language.
 In Claude Code at the project folder, **type this and press Enter**:
 
 ```
-/orient
+/yc-orient
 ```
 
-That's it. The `/orient` command is a slash command that lives inside the project repo — it tells Claude to read `CLAUDE.md` and `WORKFLOW.md`, check recent git history, summarize the project state for you, and ask what you'd like to work on.
+That's it. The `/yc-orient` command is a slash command that lives inside the project repo — it tells Claude to read `CLAUDE.md` and `WORKFLOW.md`, check recent git history, summarize the project state for you, and ask what you'd like to work on.
 
-> **If `/orient` doesn't autocomplete or work**, the slash commands haven't loaded yet. Either restart Claude Code, or paste this fallback message:
+> **If `/yc-orient` doesn't autocomplete or work**, the slash commands haven't loaded yet. Either restart Claude Code, or paste this fallback message:
 >
 > ```
 > Read CLAUDE.md and WORKFLOW.md, then run `git log --oneline -20`
@@ -192,7 +192,7 @@ That's it. The `/orient` command is a slash command that lives inside the projec
 > and what state we're in.
 > ```
 >
-> The slash command does the same thing — just shorter to type. **Use `/orient` at the start of every new session** so Claude is fully caught up before you give it a task.
+> The slash command does the same thing — just shorter to type. **Use `/yc-orient` at the start of every new session** so Claude is fully caught up before you give it a task.
 
 ### What happens next
 
@@ -213,7 +213,7 @@ In the top of the conversation window there's a model selector. Default for dail
 
 🎯 **Claude Sonnet 4.6 — medium effort**
 
-Sonnet is fast, capable, and stretches the team's quota furthest. For most of what you'll do — copy edits, photo additions, page tweaks, /ship and /promote flows — Sonnet handles it perfectly while keeping turns snappy.
+Sonnet is fast, capable, and stretches the team's quota furthest. For most of what you'll do — copy edits, photo additions, page tweaks, /yc-ship and /yc-promote flows — Sonnet handles it perfectly while keeping turns snappy.
 
 > **If your model selector shows a newer Sonnet** (4.7, 5.0, etc. — Anthropic rolls versions forward periodically), use that one. The principle stays the same: current Sonnet for routine work, current Opus for complex tasks.
 
@@ -231,14 +231,14 @@ Claude will recommend the right one based on your task. You can override if you 
 
 ### Bookmark these URLs
 
-You'll be checking these throughout the day after every `/ship` and `/promote`:
+You'll be checking these throughout the day after every `/yc-ship` and `/yc-promote`:
 
 - **Production:** https://ywam-chateau-site.pages.dev/ — the live site
 - **Staging:** https://staging.ywam-chateau-site.pages.dev/ — where new changes go for review
 
 ### You're done with setup
 
-From here, normal work is just talking to Claude Code in plain language. **Always start a new session with `/orient`** so context is loaded the same way every time. Sonnet sessions tend to be shorter than Opus, so you'll likely run `/orient` several times a day — that's fine, it's fast.
+From here, normal work is just talking to Claude Code in plain language. **Always start a new session with `/yc-orient`** so context is loaded the same way every time. Sonnet sessions tend to be shorter than Opus, so you'll likely run `/yc-orient` several times a day — that's fine, it's fast.
 
 ---
 
@@ -290,7 +290,7 @@ This setup runs on YOUR Mac. The setup itself doesn't sync to other machines —
 **What IS shared automatically (via the project repo):**
 
 - All workflow rules and decisions (in `CLAUDE.md`, `WORKFLOW.md` of each project)
-- Slash commands (`/ship`, `/promote`) — they live inside the repo
+- Slash commands (`/yc-ship`, `/yc-promote`) — they live inside the repo
 - Permission allowlist for routine commands
 
 **What stays per-machine:**
@@ -338,7 +338,7 @@ For visual design work (new pages, photo placement), the team uses **Claude Desi
 
 5. **Hand the export back to Claude Code**, say *"apply this to staging"* and attach (or paste the path to) the exported file.
 
-6. **Claude Code runs the "merge gate"** — it diffs the export against the current repo, surfaces what changed (text, photos, structure, tokens), and applies only the visual decisions while preserving the tokenized design system. You review the diff, then `/ship` to staging.
+6. **Claude Code runs the "merge gate"** — it diffs the export against the current repo, surfaces what changed (text, photos, structure, tokens), and applies only the visual decisions while preserving the tokenized design system. You review the diff, then `/yc-ship` to staging.
 
 > ⚠️ **Always export from Claude Code first** (step 1) before opening Claude Design. If you start from scratch in Claude Design, the merge gate has nothing to diff against and you'll lose the tokenized styles. Round-tripping the current page in keeps the design system intact.
 
