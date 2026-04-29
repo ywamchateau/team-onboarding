@@ -211,11 +211,13 @@ Claude will then **recommend a model** for that task (see below) and start worki
 
 In the top of the conversation window there's a model selector. Default for daily work:
 
-🎯 **Claude Sonnet 4.7 — medium effort**
+🎯 **Claude Sonnet 4.6 — medium effort**
 
 Sonnet is fast, capable, and stretches the team's quota furthest. For most of what you'll do — copy edits, photo additions, page tweaks, /ship and /promote flows — Sonnet handles it perfectly while keeping turns snappy.
 
-**Switch to Claude Opus 4.7 — high effort** when the task is genuinely complex:
+> **If your model selector shows a newer Sonnet** (4.7, 5.0, etc. — Anthropic rolls versions forward periodically), use that one. The principle stays the same: current Sonnet for routine work, current Opus for complex tasks.
+
+**Switch to Claude Opus 4.6 — high effort** when the task is genuinely complex:
 - Applying a Claude Design export with the merge gate (especially with new photos or structural changes)
 - Multi-file refactors
 - Designing a new page from scratch
