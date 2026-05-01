@@ -155,15 +155,20 @@ Walk through the prompts — exact answers:
 
 ### 2.5 — Verify your git name (1 paste)
 
-Every commit you make will show your name in the Cloudflare deploy list and the project's git history. We want your **real first name** there, not a GitHub handle. Paste this one-liner to check + set it correctly:
+Every commit you make will show your name in the Cloudflare deploy list and the project's git history. The website repo enforces this via a git hook — your commits will be **rejected** if your `git config user.name` is empty or looks like a GitHub handle. Best to fix it now before your first commit.
+
+Paste this one-liner to check + get a fix command if needed:
 
 ```
-NAME=$(git config user.name); echo "Current: $NAME"; FIRST=$(echo "$NAME" | awk '{print $1}'); if [ -z "$NAME" ] || echo "$NAME" | grep -qE "^[a-z0-9_-]+$"; then echo ""; echo "⚠️  Looks like a GitHub handle, not a real name."; echo "Run this to fix it (replace with your real name):"; echo '   git config --global user.name "Your Name"'; else echo "✅ First name extracted: $FIRST — looks good."; fi
+NAME=$(git config user.name); echo "Current: $NAME"; FIRST=$(echo "$NAME" | awk '{print $1}'); WORDS=$(echo "$NAME" | awk '{print NF}'); if [ -z "$NAME" ] || echo "$NAME" | grep -qE "^[a-z0-9_-]+$"; then echo ""; echo "❌ This will be REJECTED by the commit hook (looks like a GitHub handle)."; echo "Fix it now:"; echo '   git config --global user.name "Your Real Name"'; elif [ "$WORDS" = "1" ] && [ "$(echo "$NAME" | wc -c)" -gt 8 ]; then echo ""; echo "⚠️  Single long word — looks smushed. Commits will work but the prefix will be ugly."; echo "Recommend setting with a space:"; echo '   git config --global user.name "First Last"'; else echo "✅ First name extracted: $FIRST — looks good. Your commits will start with \"$FIRST: ...\""; fi
 ```
 
 You'll see one of:
 - **`✅ First name extracted: Sarah — looks good.`** → you're set, move to Step 3.
-- **`⚠️  Looks like a GitHub handle, not a real name.`** → run `git config --global user.name "Your Name"` (with your actual real name in quotes) and paste the verifier again.
+- **`⚠️  Single long word — looks smushed.`** → your name has no space. Recommended: `git config --global user.name "First Last"` so your prefix becomes `First:` instead of `FirstLast:`.
+- **`❌ This will be REJECTED by the commit hook.`** → run `git config --global user.name "Your Real Name"` (with your actual real name in quotes) and paste the verifier again.
+
+> **Why this matters:** every commit subject in the website repo starts with the author's first name (e.g., `Sarah: copy: update DTS price`). The Cloudflare deploy dashboard shows commit subjects, so this makes it instantly clear who shipped what. The git hook lives at `.githooks/prepare-commit-msg` and runs automatically — no extra steps from you, just keep your `user.name` set to a real name and it works.
 
 ---
 
