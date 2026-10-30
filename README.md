@@ -66,7 +66,7 @@ First it asks *"Authenticate Git with your GitHub credentials?"*: press Enter. T
 **2.5 · Tell git who you are.** It asks two questions. Type your real **first and last name with a space** (e.g. `Andy Kim`), not your GitHub username, then your work email. Your first name labels every change you make.
 
 ```
-read "n?Your first and last name: " && read "e?Your work email: " && git config --global user.name "$n" && git config --global user.email "$e" && echo "✅ Saved as $(git config user.name)"
+read "n?Your first and last name: " && read "e?Your work email: " && git config --global user.name "$n" && git config --global user.email "$e" && echo "✅ Saved as $(git config --global user.name)"
 ```
 
 **2.6 · Download the website.** About a minute. If your Mac asks whether Terminal may access your **Documents** folder, click **Allow**. You're done when you see `✅ The website is downloaded`.
